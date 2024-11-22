@@ -290,8 +290,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1241624233}
   - component: {fileID: 1241624232}
-  - component: {fileID: 1241624230}
-  - component: {fileID: 1241624229}
   - component: {fileID: 1241624231}
   - component: {fileID: 1241624228}
   m_Layer: 0
@@ -313,54 +311,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333e63e251089fa4c926ebb7b5d6f207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!231 &1241624229
-SpringJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241624227}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 1436534073}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 0.006793881
-  m_DampingRatio: 0
-  m_Frequency: 1
---- !u!50 &1241624230
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241624227}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  angle: 45
+  force: 5
+  maxForce: 10
+  minForce: 1
 --- !u!58 &1241624231
 CircleCollider2D:
   m_ObjectHideFlags: 0

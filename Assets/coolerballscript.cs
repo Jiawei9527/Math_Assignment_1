@@ -1,70 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class coolerballscript : MonoBehaviour
 {
-    private bool IsPressed;
+    public float angle = 45f;  // launch angle (in degrees)
+    public float force = 5f;   // launch force
+    public float maxForce = 10f; // maximum force
+    public float minForce = 1f;  // minimum force
 
-    private float releaseDelay;
-
-    private float maxDragDistance = 4f;
-
-    private Rigidbody2D slingRb;
-
-    private Rigidbody2D rb;
-    
-    private SpringJoint2D sj;
-
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        sj = GetComponent<SpringJoint2D>();
-        slingRb = sj.connectedBody;
-
-        releaseDelay = 1 / (sj.frequency * 4);
-    }
     void Update()
     {
-        if (IsPressed)
-        {
-            DragBall();
-        }
-    }
-    private void DragBall()
-    {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float distance = Vector2.Distance(mousePosition, slingRb.position);
+        //mathf.clamp works by setignthe maxinum and min values that can be use and once the user enters the desited value withing the max-min it will store the value to use later
 
-        if (distance > maxDragDistance)
+        // adjust the angle using the w and s keys
+        if (Input.GetKeyDown(KeyCode.W)) // increases the angle by 5 degrees
         {
-            Vector2 direction = (mousePosition - slingRb.position).normalized;
-            rb.position = slingRb.position + direction * maxDragDistance;
-        } else
+            angle += 5f;
+            angle = Mathf.Clamp(angle, 0f, 90f); // stores value after adjustment
+        }
+        if (Input.GetKeyDown(KeyCode.S)) // decreases the angle by 5 degrees
         {
-            rb.position = mousePosition;
+            angle -= 5f;
+            angle = Mathf.Clamp(angle, 0f, 90f); // Clamp after adjustment
         }
 
-        
-    }
-    private void OnMouseDown()
-    {
-        IsPressed = true;
-        rb.isKinematic = true;
-    }
-    private void OnMouseUp()
-    {
-        IsPressed = false;
-        rb.isKinematic = false;
-        StartCoroutine(Release());
-    }
 
+        // adjust force using the a and Ddkeys
+        if (Input.GetKeyDown(KeyCode.D)) // increases tthe force by 1
+        {
+            force += 1f;
+            force = Mathf.Clamp(force, minForce, maxForce); // stores value after adjustment
+        }
+        if (Input.GetKeyDown(KeyCode.A)) // decreases the force by 1
+        {
+            force -= 1f;
+            force = Mathf.Clamp(force, minForce, maxForce); // stores valuep after adjustment
+        }
 
-    private IEnumerator Release()
-    {
-        yield return new WaitForSeconds(releaseDelay);
-        sj.enabled = false;
-        
+        // prints the current angle and force values into the console
+        Debug.Log("Angle: " + angle + ", Force: " + force);
     }
 }
